@@ -1,0 +1,57 @@
+/* Advertisement.css */
+.slider-area {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.block-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.block-slider ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.block-slider ul li {
+    display: none;
+}
+
+.block-slider ul li img {
+    width: 500px;
+    height: 250px;
+    display: inline-block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.caption-group {
+    position: absolute;
+    bottom: 50px;
+    left: 700px;
+    color: #0d0c0c;
+    z-index: 1;
+}
+
+.caption-group .caption {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.caption-group .subtitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.caption-group .button-radius {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}

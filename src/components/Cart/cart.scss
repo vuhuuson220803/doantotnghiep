@@ -1,0 +1,33 @@
+/* cart.css */
+.cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .cart-item {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .cart-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .cart-item p {
+    margin: 5px 0;
+  }
+  
+  .cart-item ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart-item li {
+    margin-bottom: 5px;
+  }
+  
+
+  

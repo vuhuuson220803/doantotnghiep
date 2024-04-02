@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import './ProductDetail.scss';
+
+const ProductDetail = ({ products }) => {
+    const { id } = useParams();
+    const [product, setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        const selectedProduct = products.find((item) => item.id === parseInt(id));
+        setProduct(selectedProduct);
+    }, [id, products]);
+
+    const handleIncrement = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const handleDecrement = () => {
+        setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+    };
+
+    if (!product) {
+        return <div className="product-detail-loading">Loading...</div>;
+    }
+
+    return (
+        <>
+        <div className="product-detail">
+            <img className="product-image" src={product.image} alt={product.title} />
+            <div className="product-details">
+                <h2 className="product-title">{product.title}</h2>
+                <div className='product-content'>
+                    <p className="product-description">{product.description}</p>
+                    <p className="product-price">Giá: {product.price} VNĐ</p>
+                    <div className="quantity-controls">
+                        <button className="decrement-btn" onClick={handleDecrement}>-</button>
+                        <span className="quantity">{quantity}</span>
+                        <button className="increment-btn" onClick={handleIncrement}>+</button>
+                    </div>
+                    <Link to={'/cart'} onClick={onchange}>
+                    <button className="CartBtn">
+                    <span className="IconContainer">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" className="cart">
+                                    <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path>
+                                </svg>
+                            </span>
+                            <p className="text">ADD TO CART</p>
+                    </button>
+                    </Link>
+                </div>
+            </div>
+        </div>
+        <div className='comment'> </div>
+        </>
+    );
+}
+
+export default ProductDetail;
