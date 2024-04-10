@@ -8,11 +8,7 @@ const Header = ({cartCount}) => {
   return (
     <header className="header">
       <div className="container">
-        <Link to={'/'}>
-        <div className="logo">
-          <img src={logo} alt="Logo" />
-        </div>
-        </Link>
+       
         
         <nav className="menu">
           <ul>

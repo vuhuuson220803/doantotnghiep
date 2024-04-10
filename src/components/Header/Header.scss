@@ -34,6 +34,9 @@
     color: #fff;
     text-decoration: none;
   }
+  .search-bar{
+    display: flex;
+  }
 
   .search-bar input[type="text"] {
     padding: 8px;
@@ -48,6 +51,10 @@
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
+  }
+  .user-actions{
+    display: flex;
+
   }
 
   .user-actions ul {

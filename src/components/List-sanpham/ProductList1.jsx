@@ -48,6 +48,7 @@ const ProductList = () => {
                     <h3>{product.title}</h3>
                     <p>{product.description}</p>
                     <p>Giá: {product.price} VNĐ</p>
+                <div className="action">
                     <button className="CartBtn" onClick={() => addToCart(product.id)}>
                         <span className="IconContainer">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="rgb(17, 17, 17)" className="cart">
@@ -76,6 +77,7 @@ const ProductList = () => {
                             </div>
                         </button>
                         </Link>
+                    </div>
                 </li>
             ))}
         </div>
