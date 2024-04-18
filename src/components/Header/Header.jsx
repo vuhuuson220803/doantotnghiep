@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from './logo.jpg'
 import './Header.css'
 import 'boxicons'
 const Header = ({ cartCount }) => {
 
   return (
-    <header className="header fixed w-full z-[100] flex h-[4em] *:text-base items-center justify-between text-[#fffff] font-roboto bg-[#ff9900]">
+    <header className="fixed w-full z-[100] flex h-[4em] *:text-base items-center justify-between text-[#fffff] font-roboto bg-[#ff9900]">
       <div className="menu">
         <nav>
           <ul className='flex *:ml-4'>
