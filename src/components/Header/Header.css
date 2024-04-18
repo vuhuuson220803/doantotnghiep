@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cursor-pointer:hover{
+    color: rgba(134, 134, 134, 0.545);
+}
