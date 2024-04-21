@@ -53,7 +53,9 @@ const Login = () => {
   <Link to={`/`} onClick={handleSubmit}>
     <button >Login</button>
   </Link>
-  <div className="go-back">Go back</div>
+  <Link to={`/`} onClick={handleSubmit}>
+    <a >Go Back Home</a>
+  </Link>
 </div>
 
   );

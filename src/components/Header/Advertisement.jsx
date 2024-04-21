@@ -1,98 +1,77 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Advertisement.scss';
-import r2Image from './r2.jpg'; // Import ảnh vào component
-import r1Image from './r1.jpeg';
-import r3Image from './r3.jpg';
+// thư viện icon react
+import {BsChevronCompactLeft,BsChevronCompactRight} from 'react-icons/bs'
+import { RxDotFilled } from 'react-icons/rx';
 const Advertisement = () => {
+  const slides = [
+    {
+      url: 'https://scontent.iocvnpt.com/resources/portal/Images/BGG/admin.dulich/2023/z4330299859166_8e8037959e2e796414bfdfbe3e392b59_733687414.jpg'
+    },
+    {
+      url:'https://imagevietnam.vnanet.vn/Upload/2020/10/26/26102020092906525-04b.jpg'
+    },
+    {
+      url:'https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg'
+    },
+    {
+      url:'https://cdn.tgdd.vn/2021/06/CookProduct/com-la-gi-cach-bao-quan-com-tuoi-mua-com-lang-vong-o-dau-ngon-thumb-chu-nhat-1200x676.jpg'
+    },
+    {
+      url:'https://dulichquynhon.binhdinh.vn/wp-content/uploads/2022/10/ruou-bau-da-binh-dinh-1.jpg'
+    }
+  ]
+
+  const [currentIndex , setCurrentIndex] = useState (0)
+  // back image
+  const prevSlide = () => {
+    const isFirstSlide =  currentIndex === 0 ;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex-1;
+    setCurrentIndex (newIndex);
+  }
+// next image
+  const nextSlide = () => {
+    const isLastSlide =  currentIndex === slides.length - 1 ;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex (newIndex);
+  }
+
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex (slideIndex);
+  }
+
   useEffect(() => {
-    const slider = document.getElementById('bxslider-home4'); // Lấy phần tử ul chứa các slide
-    const slides = slider.getElementsByTagName('li'); // Lấy tất cả các slide
+    const intervalId = setInterval(() => {
+      nextSlide();
+    }, 2000); // Thay đổi số 5000 thành khoảng thời gian bạn muốn slide chuyển đổi (ở đây là 5 giây)
 
-    let currentSlideIndex = 0; // Index của slide hiện tại
-    let slideInterval; // Biến lưu trữ interval cho việc tự động chuyển slide
-
-    // Hiển thị slide theo index truyền vào
-    const showSlide = (index) => {
-      for (let i = 0; i < slides.length; i++) {
-        if (i === index) {
-          slides[i].style.display = 'block'; // Hiển thị slide đang được chọn
-        } else {
-          slides[i].style.display = 'none'; // Ẩn các slide còn lại
-        }
-      }
-    };
-
-    // Chuyển sang slide tiếp theo
-    const nextSlide = () => {
-      currentSlideIndex = (currentSlideIndex + 1) % slides.length; // Tăng index lên 1, quay lại 0 nếu vượt qua slide cuối cùng
-      showSlide(currentSlideIndex); // Hiển thị slide tiếp theo
-    };
-
-    // Bắt đầu tự động chuyển slide
-    const startSlideShow = () => {
-      slideInterval = setInterval(nextSlide, 2000); // Chuyển slide sau mỗi 2 giây
-    };
-
-    // Dừng tự động chuyển slide khi rê chuột vào slider
-    const stopSlideShow = () => {
-      clearInterval(slideInterval);
-    };
-
-    // Gán sự kiện hover vào slider
-    slider.addEventListener('mouseenter', stopSlideShow);
-    slider.addEventListener('mouseleave', startSlideShow);
-
-    // Bắt đầu tự động chuyển slide khi component được render
-    startSlideShow();
-
-    // Cleanup
     return () => {
-      clearInterval(slideInterval); // Dừng interval khi component unmount
-      slider.removeEventListener('mouseenter', stopSlideShow); // Xóa sự kiện hover
-      slider.removeEventListener('mouseleave', startSlideShow); // Xóa sự kiện hover
+      clearInterval(intervalId);
     };
-  }, []); // Sử dụng empty dependency array để chỉ gọi useEffect một lần sau khi component mount
+  }, [currentIndex]);
 
   return (
-    <div className="slider-area">
-      <div className="block-slider block-slider4">
-        <ul className="" id="bxslider-home4">
-          <li>
-            <img src={r2Image} alt="Slide" /> {/* Sử dụng đường dẫn của ảnh */}
-            <div className="caption-group">
-              <h2 className="caption title">
-                Chè Thái Nguyên <span className="primary">Đặc Sản Thái Nguyên!<strong></strong></span>
-              </h2>
-              <h4 className="caption subtitle">Miền Bắc</h4>
-            
-              <a className="caption button-radius" href="#"><span className="icon"></span>Shop now</a>
-             
-            </div>
-          </li>
-
-          <li>
-            <img src={r1Image} alt="Slide" /> {/* Sử dụng đường dẫn của ảnh */}
-            <div className="caption-group">
-              <h2 className="caption title">
-                Bún bò Huế  <span className="primary">Đặc sản Huế !<strong></strong></span>
-              </h2>
-              <h4 className="caption subtitle">Miền Trung</h4>
-              <a className="caption button-radius" href="#"><span className="icon"></span>Shop now</a>
-            </div>
-          </li>
-
-          <li>
-            <img src={r3Image} alt="Slide" /> {/* Sử dụng đường dẫn của ảnh */}
-            <div className="caption-group">
-              <h2 className="caption title">
-                Cơm Tấm<span className="primary">Đặc Sản Sài Gòn!<strong></strong></span>
-              </h2>
-              <h4 className="caption subtitle">Miền Nam</h4>
-              <a className="caption button-radius" href="#"><span className="icon"></span>Shop now</a>
-            </div>
-          </li>
-        </ul>
+    // slide show
+    <div className="max-w-[1400px] w-full h-[46.875em] m-auto py-16 px-4 relative">
+      <div style={{backgroundImage:`url(${slides[currentIndex].url})`}} className="w-full h-full rounded-2xl bg-center bg-cover duration-200"></div>
+      {/* back : nút lùi lại*/}
+      <div className='absolute top-[50%] -translate-x-0 tranlate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer '>
+        <BsChevronCompactLeft onClick={prevSlide} size={30}/>
       </div>
+      
+      {/* next : nút tiếp theo*/}
+      <div className='absolute top-[50%] -translate-x-0 tranlate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer '>
+        <BsChevronCompactRight onClick={nextSlide} size={30}/>
+      </div>
+      {/* 
+      // đây là dấu chấm ở phần slide (hiện tại không dùng đến )
+      <div className="flex top-4 justify-center py-2">
+        {slides.map((slide , slideIndex) => (
+          <div key={slideIndex} onClick={() => goToSlide(slideIndex)} className='text-2xl cursor-pointer'>
+            <RxDotFilled />
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 };
