@@ -6,22 +6,21 @@ import Footer from '../components/Footer/Footer';
 
 const Home = () => {
   return (
-    <div className="Header">
-      <Header/>
-      <h1>Chào mừng bạn đến với website của tôi </h1>
-
-      <div className="Advertisement">
+    <div>
+      <div className='Header'>
+        <Header />
+      </div>
+      <div className='Advertisement pt-[1em] '>
         <Advertisement />
       </div>
-
-      <div className="ProductList">
+      <div className='ProductList1'>
         <ProductList1 />
       </div>
-
-      <div className="Footer">
+      <div className='Footer'>
         <Footer />
       </div>
     </div>
+
   );
 }
 
